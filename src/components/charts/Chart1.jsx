@@ -134,7 +134,8 @@ ChartJS.register(
 
 const BarChart = ({table, labels, title}) => {
     const data = {
-        labels: ['Label 1', 'Label 2', 'Label 3', 'Label 4', 'Label 5'],
+        // labels: ['Label 1', 'Label 2', 'Label 3', 'Label 4', 'Label 5'],
+        labels: labels,
             datasets: [
             {
                 label: title,

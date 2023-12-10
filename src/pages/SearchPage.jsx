@@ -22,10 +22,12 @@ export const resourcesTable = [
         }
     },
     {
-        "title": "table 6",
+        "title": "Répartition des élèves du préscolaire par région en 2019-2020",
         "type": "tableau",
         "source": null,
-        "matrix": [[1, 7, 4, 6, 2], [8, 3, 2, 6, 10], [9, 0, 1, 7, 5]],
+        // "matrix": [[1, 7, 4, 6, 2], [8, 3, 2, 6, 10], [9, 0, 1, 7, 5]],
+        "matrix": [15960, 199185, 33079, 23917, 152543, 18611, 8323, 71375, 26630, 17558],
+        "labels": ["ADAMAOUA", "CENTRE", "EST", "EXTRÊME-NORD", "LITTORAL", "NORD", "NORD-OUEST", "OUEST", "SUD", "SUD-OUEST"],
         "value": "accronym definition",
         "reference": {
             "docName": "Title du dernier doc",
@@ -35,7 +37,7 @@ export const resourcesTable = [
     },
     {
         "title": "text 3",
-        "type": "text",
+        "type": "ta",
         "source": null,
         // "matrix": [[1, 7, 4, 6, 2], [8, 3, 2, 6, 10], [9, 0, 1, 7, 5]],
         "value": "voici le texte 2",
@@ -46,27 +48,27 @@ export const resourcesTable = [
         }
     },
     {
-        "title": "text 4",
+        "title": "Education",
         "type": "text",
         "source": null,
         // "matrix": [[1, 7, 4, 6, 2], [8, 3, 2, 6, 10], [9, 0, 1, 7, 5]],
-        "value": "voici le texte 1",
+        "value": "action d’éduquer, de former, d’instruire quelqu’un. L’éducation peut être définie comme un processus de transmission des connaissances et d’acquisition des valeurs dont le but est de permettre à l’individu d’agir plus efficacement dans son milieu naturel et social en tant que citoyen.",
         "reference": {
-            "docName": "Title du premier doc",
+            "docName": "Annuaire2019_2020",
             "link": "document path",
-            "pageNumber": 12
+            "pageNumber": 19
         }
     },
     {
-        "title": "text 4",
+        "title": "Éducation extrascolaire",
         "type": "text",
         "source": null,
         // "matrix": [[1, 7, 4, 6, 2], [8, 3, 2, 6, 10], [9, 0, 1, 7, 5]],
-        "value": "voici le texte 1",
+        "value": "elle est appréhendée comme cette forme d’éducation offerte aux jeunes en dehors des structures scolaires classiques essentiellement par des méthodes pédagogiques non directives.",
         "reference": {
             "docName": "Title du premier doc",
             "link": "document path",
-            "pageNumber": 12
+            "pageNumber": 20
         }
     },
 ]
@@ -74,7 +76,7 @@ export const resourcesTable = [
 export default function SearchPage() {
 
     const [query, setQuery] = useState('')
-    const [resources, setResources] = useState([])
+    const [resources, setResources] = useState(resourcesTable)
 
 	// useEffect(() => {
 	// 	getData()
@@ -158,10 +160,10 @@ export default function SearchPage() {
                                                     width={900}
                                                 >
                                                     <Typography>
-                                                        Réponse: {data.title } {data.value ? `: ${data.value}` : null}
+                                                        {data.title } {data.value ? `: ${data.value}` : null}
                                                     </Typography>
                                                     <Typography>
-                                                        Reference: ({data.reference.docName}, lien: {data.reference.link}, page {data.reference.pageNumber})
+                                                        ({data.reference.docName}, lien: {data.reference.link}, page {data.reference.pageNumber})
                                                     </Typography>
                                                 </Box>
                                             : null
@@ -170,7 +172,7 @@ export default function SearchPage() {
                                         {
                                             data.type == "tableau" ?
                                                 <Box width='40%'>
-                                                    <BarChart table={data.matrix} title={data.title}/>
+                                                    <BarChart table={data.matrix} title={data.title} labels={data.labels}/>
                                                 </Box>
                                             : null
                                         }
